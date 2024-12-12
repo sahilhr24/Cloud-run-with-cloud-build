@@ -1,0 +1,68 @@
+# Define substitutions
+substitutions:
+  _DEPLOYMENT_NAME: 'hello-world4'
+  _IMAGE: 'asia-south1-docker.pkg.dev/stage-443707/github-repository/git-imagee:v-0.5'
+  _REGION: 'asia-south1'
+
+# Specify the logs bucket to store build logs
+logsBucket: gs://cloud-build--pvt-logs
+
+steps:
+  # Step 1: Debug Step - List files in the current build context
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Listing files in the current build context:"
+        ls -la
+        echo "Deployment Name: ${_DEPLOYMENT_NAME}"
+        echo "Image Name: ${_IMAGE}"
+
+  # Step 2: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '${_IMAGE}', '.']
+
+  # Step 3: Push the Docker image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '${_IMAGE}']
+
+  # Step 4: Deploy the application to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_DEPLOYMENT_NAME}'
+      - '--image'
+      - '${_IMAGE}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--ingress'
+      - 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
+      #- '--allow-unauthenticated'
+
+  # Step 5: Add IAM policy binding to allow public access
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'beta'
+      - 'run'
+      - 'services'
+      - 'add-iam-policy-binding'
+      - '${_DEPLOYMENT_NAME}'
+      - '--region'
+      - '${_REGION}'
+      - '--member'
+      - 'allUsers'
+      - '--role'
+      - 'roles/run.invoker'
+
+# Specify images to build
+images:
+  - '${_IMAGE}'
+
+# Specify the worker pool configuration
+options:
+  pool:
+    name: 'projects/stage-443707/locations/asia-south1/workerPools/cloud-build-private-pool'
