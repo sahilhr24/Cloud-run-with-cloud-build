@@ -1,7 +1,7 @@
 # Define substitutions
 substitutions:
   _DEPLOYMENT_NAME: 'git-imagee01-d-access'
-  _IMAGE: 'asia-south1-docker.pkg.dev/stage-443707/github-repository/git-imagee:v-0.5'
+  _IMAGE: 'asia-south1-docker.pkg.dev/gke-test-44/github-repository/git-imagee:v-0.5'
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
