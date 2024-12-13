@@ -1,7 +1,7 @@
 # Define substitutions
 substitutions:
-  _DEPLOYMENT_NAME: 'git-imagee03-without-access'
-  _IMAGE: 'asia-south1-docker.pkg.dev/gke-test-44/github-repository/git-imagee:v-0.5'
+  _DEPLOYMENT_NAME: 'hello-world4'
+  _IMAGE: 'asia-south1-docker.pkg.dev/stage-443707/github-repository/git-imagee:v-0.5'
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
@@ -40,11 +40,11 @@ steps:
       - '--platform'
       - 'managed'
       #- '--allow-unauthenticated'  # Allow public access without authentication
-      #- '--vpc-connector'
-      #- 'sv-connect'  # Specify the VPC Connector here
+      - '--vpc-connector'
+      - 'cloud-run-connector-new'  # Specify the VPC Connector here
       - '--ingress'
-      - 'all'  # Make the service publicly accessible
-      #- 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
+      #- 'all'  # Make the service publicly accessible
+      - 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
 
   # Step 5: Add IAM policy binding to allow public access
   - name: 'gcr.io/cloud-builders/gcloud'
