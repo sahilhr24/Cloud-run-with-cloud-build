@@ -40,10 +40,10 @@ steps:
       - '--platform'
       - 'managed'
       #- '--allow-unauthenticated'  # Allow public access without authentication
-      #- '--vpc-connector'
-      #- 'cloud-run-connector-new'  # Specify the VPC Connector here
-      #- '--ingress'
-      #- 'all'  # Make the service publicly accessible
+      - '--vpc-connector'
+      - 'sv-connect'  # Specify the VPC Connector here
+      - '--ingress'
+      - 'all'  # Make the service publicly accessible
       #- 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
 
   # Step 5: Add IAM policy binding to allow public access
