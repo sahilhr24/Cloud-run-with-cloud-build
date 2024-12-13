@@ -1,6 +1,6 @@
 # Define substitutions
 substitutions:
-  _DEPLOYMENT_NAME: 'git-imagee01-d-access'
+  _DEPLOYMENT_NAME: 'git-imagee-02-with-sr-conn'
   _IMAGE: 'asia-south1-docker.pkg.dev/gke-test-44/github-repository/git-imagee:v-0.5'
   _REGION: 'asia-south1'
 
