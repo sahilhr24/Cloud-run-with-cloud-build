@@ -66,6 +66,6 @@ images:
   - '${_IMAGE}'
 
 # Specify the worker pool configuration
-options:
-  pool:
-    name: 'projects/stage-443707/locations/asia-south1/workerPools/cloud-build-private-pool'
+#options:
+#  pool:
+#    name: 'projects/stage-443707/locations/asia-south1/workerPools/cloud-build-private-pool'
