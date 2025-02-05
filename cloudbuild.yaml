@@ -1,11 +1,11 @@
 # Define substitutions
 substitutions:
-  _DEPLOYMENT_NAME: 'hello-world4'
-  _IMAGE: 'asia-south1-docker.pkg.dev/stage-443707/github-repository/git-imagee:v-0.5'
+  _DEPLOYMENT_NAME: 'hello-world'
+  _IMAGE: 'asia-south1-docker.pkg.dev/biller-saas/test-repo/test-img:v-0.1'
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
-logsBucket: gs://cloud-build--pvt-logs
+logsBucket: gs://cloud-build-logs-01
 
 steps:
   # Step 1: Debug Step - List files in the current build context
@@ -39,12 +39,12 @@ steps:
       - '${_REGION}'
       - '--platform'
       - 'managed'
-      #- '--allow-unauthenticated'  # Allow public access without authentication
-      - '--vpc-connector'
-      - 'cloud-run-connector-new'  # Specify the VPC Connector here
-      - '--ingress'
+      - '--allow-unauthenticated'  # Allow public access without authentication
+      #- '--vpc-connector'
+      #- 'cloud-run-connector-new'  # Specify the VPC Connector here
+      #- '--ingress'
       #- 'all'  # Make the service publicly accessible
-      - 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
+      #- 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
 
   # Step 5: Add IAM policy binding to allow public access
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -66,6 +66,6 @@ images:
   - '${_IMAGE}'
 
 # Specify the worker pool configuration
-options:
-  pool:
-    name: 'projects/stage-443707/locations/asia-south1/workerPools/cloud-build-private-pool'
+#options:
+#  pool:
+#    name: 'projects/stage-443707/locations/asia-south1/workerPools/cloud-build-private-pool'
