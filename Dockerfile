@@ -13,7 +13,7 @@ COPY ondc-site-verification.html /usr/share/nginx/html/
 EXPOSE 8080
 
 # Override the default Nginx configuration (if needed)
-COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
