@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Set working directory
-WORKDIR /usr/share/nginx/html
+#WORKDIR /usr/share/nginx/html
 
 # Copy the HTML files
 COPY default.conf /etc/nginx/conf.d/
