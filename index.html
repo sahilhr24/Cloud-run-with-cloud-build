@@ -1,45 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Run Frontend D-Access</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        #output {
-            margin-top: 20px;
-            white-space: pre-wrap;
-        }
-    </style>
-</head>
-<body>
-    <h1>Welcome to Cloud Run Without cloud Build Part-3!</h1>
-    <p>Click the button below:</p>
-    <button onclick="fetchGKEData()">Fetch GKE Data</button>
-    <div id="output"></div>
-
-    <script>
-        async function fetchGKEData() {
-            try {
-                const response = await fetch('/fetch');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.text();
-                document.getElementById('output').innerText = data;
-            } catch (error) {
-                document.getElementById('output').innerText = 'Error: ' + error.message;
-            }
-        }
-    </script>
-</body>
+<html>
+  <head>
+    <meta name='ondc-site-verification' content='w8BuLn6iV7xYs0qstkaC7wXRKWFYMSZuXPn5mlXLPuLiUHrMwP2dIYpeTClxAuDhZttoSL7RMX3B33+pHHiTBTgwNDNmMzEzLTk2NjItNGM2ZS1hN2E4LTE2NGE0MzI3ZmVmYw==' />
+  </head>
+  <body>
+    ONDC Site Verification Page
+  </body>
 </html>
