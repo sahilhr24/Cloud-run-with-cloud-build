@@ -8,7 +8,7 @@ FROM nginx:latest
 COPY default.conf /etc/nginx/conf.d/
 
 # Remove the default index.html file
-RUN rm -f /usr/share/nginx/html/index.html
+RUN rm -f /usr/share/nginx/html/index*
 
 #COPY index.html /usr/share/nginx/html/
 COPY ondc-site-verification.html /usr/share/nginx/html/
