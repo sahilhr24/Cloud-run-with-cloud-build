@@ -6,7 +6,7 @@ FROM nginx:latest
 
 # Copy the HTML files
 COPY default.conf /etc/nginx/conf.d/
-COPY index.html /usr/share/nginx/html/
+#COPY index.html /usr/share/nginx/html/
 COPY ondc-site-verification.html /usr/share/nginx/html/
 
 # Expose port 8080 for Cloud Run
