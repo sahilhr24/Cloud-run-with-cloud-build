@@ -6,6 +6,10 @@ FROM nginx:latest
 
 # Copy the HTML files
 COPY default.conf /etc/nginx/conf.d/
+
+# Remove the default index.html file
+RUN rm -f /usr/share/nginx/html/index.html
+
 #COPY index.html /usr/share/nginx/html/
 COPY ondc-site-verification.html /usr/share/nginx/html/
 
