@@ -5,7 +5,7 @@ substitutions:
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
-logsBucket: gs://cloud-build-logs-01
+logsBucket: gs://cloud-build-logs-012
 
 steps:
   # Step 1: Debug Step - List files in the current build context
