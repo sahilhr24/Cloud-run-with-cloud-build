@@ -1,7 +1,7 @@
 # Define substitutions
 substitutions:
   _DEPLOYMENT_NAME: 'hello-world'
-  _IMAGE: 'asia-south1-docker.pkg.dev/biller-saas/test-repo/test-img:v-0.1'
+  _IMAGE: 'asia-south1-docker.pkg.dev/pvt-stage-1/cloud-run-source-deploy/my_custom_nginx:latest'
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
