@@ -41,18 +41,12 @@ steps:
       - 'managed'
       - '--allow-unauthenticated'  # Allow public access without authentication
       #
-      - '--allow-unauthenticated'
       - '--ingress=all'  # Ensures public access
-      - '--ingress=internal' # Ensures pvt access
+      #- '--ingress=internal' # Ensures pvt access
+      - '--ingress=internal-and-cloud-load-balancing'  # Allow traffic from external LBs
       # Uncomment below if using a VPC Connector
       # - '--vpc-connector'
       # - 'cloud-run-connector-new'
-      #
-      #- 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
-      #- 'all'  # Make the service publicly accessible
-      #- '--ingress'
-      #- '--vpc-connector'
-      #- 'cloud-run-connector-new'  # Specify the VPC Connector here
 
   # Step 5: Add IAM policy binding to allow public access
   - name: 'gcr.io/cloud-builders/gcloud'
