@@ -40,7 +40,6 @@ steps:
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'  # Allow public access without authentication
-      #
       - '--ingress=all'  # Ensures public access
       #- '--ingress=internal' # Ensures pvt access
       - '--ingress=internal-and-cloud-load-balancing'  # Allow traffic from external LBs
