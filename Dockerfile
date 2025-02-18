@@ -14,7 +14,7 @@ RUN rm -f /usr/share/nginx/html/index*
 COPY ondc-site-verification.html /usr/share/nginx/html/
 
 # Expose port 8080 for Cloud Run
-EXPOSE 80
+EXPOSE 8080
 
 # Override the default Nginx configuration (if needed)
 #COPY nginx.conf /etc/nginx/nginx.conf
