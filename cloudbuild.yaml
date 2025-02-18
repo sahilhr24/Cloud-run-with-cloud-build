@@ -1,6 +1,6 @@
 # Define substitutions
 substitutions:
-  _DEPLOYMENT_NAME: 'nginx-service-2'
+  _DEPLOYMENT_NAME: 'py-service'
   _IMAGE: 'asia-south1-docker.pkg.dev/pvt-stage/cloud-run-source-deploy/my_custom_nginx:latest'
   _REGION: 'asia-south1'
 
