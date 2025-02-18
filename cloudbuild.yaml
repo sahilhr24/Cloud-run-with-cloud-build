@@ -43,8 +43,6 @@ steps:
       #
       - '--allow-unauthenticated'
       - '--ingress=all'  # Ensures public access
-      - '--set-env-vars'
-      - 'PORT=80'  # Forces Cloud Run to use port 80
       # Uncomment below if using a VPC Connector
       # - '--vpc-connector'
       # - 'cloud-run-connector-new'
