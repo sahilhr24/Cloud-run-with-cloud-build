@@ -1,7 +1,7 @@
 # Define substitutions
 substitutions:
   _DEPLOYMENT_NAME: 'py-service'
-  _IMAGE: 'asia-south1-docker.pkg.dev/pvt-stage/cloud-run-source-deploy/my_custom_nginx:latest'
+  _IMAGE: 'asia-south1-docker.pkg.dev/pvt-stage/stage-repo/stage-project-image:v-1.0'
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
