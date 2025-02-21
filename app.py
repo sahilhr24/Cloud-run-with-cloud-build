@@ -13,7 +13,7 @@ def index():
 def fetch_gke_data():
     try:
         # Private GKE service URL
-        app_url = 'http://192.168.5.16:80'  # Replace with your actual GKE IP
+        app_url = 'http://192.168.12.3:80'  # Replace with your actual GKE IP
         response = requests.get(app_url)
         return response.text
     except Exception as e:
