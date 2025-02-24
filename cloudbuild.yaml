@@ -27,9 +27,32 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '${_IMAGE}']
 
-  # Step 4: Deploy the application to Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
+ # # Step 4: Deploy the application to Cloud Run
+ #  - name: 'gcr.io/cloud-builders/gcloud'
+ #    args:
+ #      - 'run'
+ #      - 'deploy'
+ #      - '${_DEPLOYMENT_NAME}'
+ #      - '--image'
+ #      - '${_IMAGE}'
+ #      - '--region'
+ #      - '${_REGION}'
+ #      - '--platform'
+ #      - 'managed'
+ #      - '--allow-unauthenticated'  # Allow public access without authentication
+ #      - '--ingress=all'  # Ensures public access
+ #      #- '--ingress=internal' # Ensures pvt access
+ #      - '--ingress=internal-and-cloud-load-balancing'  # Allow traffic from external LBs
+ #      # Uncomment below if using a VPC Connector
+ #      # - '--vpc-connector'
+ #      # - 'cloud-run-connector-new'
+
+#Test file Part from Plutos Team
+   # Step 2: Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   # id: Deploy to Cloud Run
     args:
+      - 'gcloud'
       - 'run'
       - 'deploy'
       - '${_DEPLOYMENT_NAME}'
@@ -39,13 +62,13 @@ steps:
       - '${_REGION}'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated'  # Allow public access without authentication
-      - '--ingress=all'  # Ensures public access
-      #- '--ingress=internal' # Ensures pvt access
-      - '--ingress=internal-and-cloud-load-balancing'  # Allow traffic from external LBs
-      # Uncomment below if using a VPC Connector
-      # - '--vpc-connector'
-      # - 'cloud-run-connector-new'
+      - '--allow-unauthenticated'
+      - '--port=3000'  # Ensure Cloud Run listens on correct port
+      - '--cpu=2'  # Allocate 2 vCPUs for Cloud Run instance
+      - '--memory=4Gi'  # Allocate 2GB RAM
+      - '--max-instances=10'  # Scale up to 10 instances as needed
+    #timeout: 600s # Increased timeout to 10 minutes
+
 
   # Step 5: Add IAM policy binding to allow public access
   - name: 'gcr.io/cloud-builders/gcloud'
