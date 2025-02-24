@@ -1,7 +1,7 @@
 # Define substitutions
 substitutions:
-  _DEPLOYMENT_NAME: 'nginx-service-2'
-  _IMAGE: 'asia-south1-docker.pkg.dev/pvt-stage/cloud-run-source-deploy/my_custom_nginx:latest'
+  _DEPLOYMENT_NAME: 'py-service'
+  _IMAGE: 'asia-south1-docker.pkg.dev/pvt-stage/stage-repo/stage-project-image:v-1.0'
   _REGION: 'asia-south1'
 
 # Specify the logs bucket to store build logs
@@ -40,19 +40,12 @@ steps:
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'  # Allow public access without authentication
-      #
-      - '--allow-unauthenticated'
       - '--ingress=all'  # Ensures public access
-      - '--ingress=internal' # Ensures pvt access
+      #- '--ingress=internal' # Ensures pvt access
+      - '--ingress=internal-and-cloud-load-balancing'  # Allow traffic from external LBs
       # Uncomment below if using a VPC Connector
       # - '--vpc-connector'
       # - 'cloud-run-connector-new'
-      #
-      #- 'internal-and-cloud-load-balancing'  # Replace with 'all' or 'internal' as needed
-      #- 'all'  # Make the service publicly accessible
-      #- '--ingress'
-      #- '--vpc-connector'
-      #- 'cloud-run-connector-new'  # Specify the VPC Connector here
 
   # Step 5: Add IAM policy binding to allow public access
   - name: 'gcr.io/cloud-builders/gcloud'
