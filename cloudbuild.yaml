@@ -48,8 +48,8 @@ steps:
  #      # - 'cloud-run-connector-new'
 
 #Test file Part from Plutos Team
-  #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #- name: 'gcr.io/cloud-builders/gcloud'
     id: Deploy to Cloud Run
     args:
       - 'gcloud'
