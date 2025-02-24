@@ -48,9 +48,8 @@ steps:
  #      # - 'cloud-run-connector-new'
 
 #Test file Part from Plutos Team
-   # Step 2: Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-   # id: Deploy to Cloud Run
+    id: Deploy to Cloud Run
     args:
       - 'gcloud'
       - 'run'
@@ -65,9 +64,9 @@ steps:
       - '--allow-unauthenticated'
       - '--port=3000'  # Ensure Cloud Run listens on correct port
       - '--cpu=2'  # Allocate 2 vCPUs for Cloud Run instance
-      - '--memory=4Gi'  # Allocate 2GB RAM
+      - '--memory=2Gi'  # Allocate 2GB RAM
       - '--max-instances=10'  # Scale up to 10 instances as needed
-    #timeout: 600s # Increased timeout to 10 minutes
+    timeout: 600s # Increased timeout to 10 minutes
 
 
   # Step 5: Add IAM policy binding to allow public access
