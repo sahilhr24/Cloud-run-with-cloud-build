@@ -25,17 +25,32 @@
 
 ##########For Python##########
 # Use the official Python image
-FROM python:3.9-slim
+#FROM python:3.9-slim
 # Set working directory
-WORKDIR /app
+#WORKDIR /app
 # Copy requirements and install dependencies
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+#COPY requirements.txt /app/
+#RUN pip install -r requirements.txt
 # Copy the app and the HTML file
-COPY app.py /app/
-COPY index.html /app/
+#COPY app.py /app/
+#COPY index.html /app/
 #this is for nginx##COPY ondc-site-verification.html /app/new/
 # Expose port 8080 for Cloud Run
-EXPOSE 8080
+#EXPOSE 8080
 # Run the app
-CMD ["python", "app.py"]
+#CMD ["python", "app.py"]
+# Use lightweight Node.js Alpine image
+FROM node:18-alpine
+# Set working directory
+WORKDIR /app
+# Copy package.json and package-lock.json first (optimizing layer caching)
+COPY package*.json ./
+# Install dependencies (explicitly setting NODE_ENV)
+ENV NODE_ENV=production
+RUN npm ci --only=production
+# Copy remaining application files
+COPY . .
+# Expose port (Cloud Run ignores this, but good practice)
+EXPOSE 3000
+# Start the application
+CMD ["node", "src/server.js"]
